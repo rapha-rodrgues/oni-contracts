@@ -1,0 +1,15 @@
+*.py[co]
+.DS_Store
+.idea
+*.swp*
+*~
+*.tmproj
+*.log
+.env
+tmp
+*.sqlite3
+env/
+*.pot
+__pycache__/
+local_settings.py
+venv/

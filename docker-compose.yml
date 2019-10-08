@@ -1,0 +1,23 @@
+db:
+  image: postgres
+web:
+  build: .
+  environment:
+    - CONTRACTS_DATABASES__default__NAME=postgres
+    - CONTRACTS_DATABASES__default__ENGINE=django.db.backends.postgresql_psycopg2
+    - CONTRACTS_DATABASES__default__USER=postgres
+    - CONTRACTS_DATABASES__default__PASSWORD=postgres
+    - CONTRACTS_DATABASES__default__HOST=db
+    - CONTRACTS_DATABASES__default__PORT=5432
+    - CONTRACTS_ENV=development
+    - CONTRACTS_SECRET_KEY="CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
+    - CONTRACTS_DEBUG=true
+    - CONTRACTS_ALLOWED_HOSTS=*
+  command: python manage.py migrate
+  command: python manage.py runserver 0.0.0.0:8000
+  volumes:
+    - .:/code
+  ports:
+    - "8000:8000"
+  links:
+  - db
